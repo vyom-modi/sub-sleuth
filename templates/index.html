@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubSleuth - Seek Subtitles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon_io/favicon.ico') }}">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            --x: calc(var(--posX, 0) * 1px);
+            --y: calc(var(--posY, 0) * 1px);
+            background-image: 
+                linear-gradient(115deg, rgb(211 255 215), rgb(0, 0, 0)), 
+                radial-gradient( 90% 100% at calc( 50% + var(--x)) calc( 0% + var(--y)), rgb(200 200 200), rgb(131, 124, 138)), 
+                radial-gradient(100% 100% at calc( 80% - var(--x)) calc( 0% - var(--y)), rgb(250 255 000), rgb(168, 218, 88)), 
+                radial-gradient(150% 210% at calc(100% + var(--x)) calc( 0% + var(--y)), rgb(020 175 125), rgb(171, 173, 210)), 
+                radial-gradient(100% 100% at calc(100% - var(--x)) calc(30% - var(--y)), rgb(255 077 000), rgb(000 200 255)), 
+                linear-gradient(60deg, rgb(0, 255, 55), rgb(120 086 255));
+            background-blend-mode: overlay, overlay, difference, difference, difference, normal;
+            overflow: hidden; /* Hide overflow to prevent scrollbar */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="http://127.0.0.1:5000">
+            <h1 id="heading">SubSleuth</h1>
+        </a>
+        <form action="{{ url_for('index') }}" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" id="query" name="query" placeholder="Enter dialogue...">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        
+        {% if query %}
+        <h4>Search Results for "{{ query }}"</h4>
+        {% endif %}
+        
+        {% if subtitles is not none %}
+        <table class="subtitle-table">
+            <tbody>
+                {% for subtitle in subtitles %}
+                <tr>
+                    <td>{{ subtitle.name }}</td>
+                    <td><a href="{{ subtitle.download_link }}" class="download-btn" target="_blank"><img src="{{ url_for('static', filename='icons/download-3.svg') }}" alt="Download Icon" id="download-icon"></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: left; width: 33%;">
+                            {% if page > 1 %}
+                                <a href="{{ url_for('index', page=page-1, query=query) }}">&lt;--</a>
+                            {% endif %}
+                        </td>
+                        <td style="text-align: center; width: 34%;">
+                            {% if num_pages > 1 %}
+                                <span>Page {{ page }} of {{ num_pages }}</span>
+                            {% endif %}
+                        </td>
+                        <td style="text-align: right; width: 33%;">
+                            {% if page < num_pages %}
+                                <a href="{{ url_for('index', page=page+1, query=query) }}">--&gt;</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        {% if query is not none %}
+        <p>No results found.</p>
+        {% endif %}
+        {% endif %}  <!-- End of conditional block for subtitles -->
+
+    </div>
+
+    <script>
+        document.body.addEventListener("pointermove", (e)=>{
+        const { currentTarget: el, clientX: x, clientY: y } = e;
+        const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
+        el.style.setProperty('--posX',  x-l-w/2);
+        el.style.setProperty('--posY',  y-t-h/2);
+})
+    </script>
+</body>
+</html>

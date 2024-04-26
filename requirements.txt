@@ -1,0 +1,10 @@
+beautifulsoup4==4.12.2
+chromadb==0.4.24
+Flask==2.2.5
+nltk==3.8.1
+numpy==1.25.1
+pandas==2.0.3
+requests==2.31.0
+sentence-transformers==2.7.0
+torch==2.2.2
+tqdm==4.66.1

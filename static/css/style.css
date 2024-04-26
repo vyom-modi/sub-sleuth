@@ -1,0 +1,162 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: aliceblue;
+  text-align: center;
+}
+
+.search-box {
+  width: 400px;
+  margin: 0 auto;
+}
+
+#subtitleResults {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ea;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: calc(100% - 100px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  width: 100px;
+  padding: 10px;
+  background-color: #ccb78d;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+button[type="submit"]:hover {
+  background-color: #ccb78d;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Table-like structure with invisible borders */
+.subtitle-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subtitle-table th,
+.subtitle-table td {
+  padding: 8px;
+  text-align: left;
+  border: none;
+  animation: colorTransition 5s infinite alternate;
+}
+
+@keyframes colorTransition {
+  0% {
+      color: #ffffff; /* Start color */
+  }
+  50% {
+      color: #eff7ef; /* Middle color */
+  }
+  100% {
+      color: #ffffff; /* End color */
+  }
+}
+
+/* Button for download link */
+.download-btn {
+  /* background-color: #4caf50; */
+  /* color: white; */
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.download-btn:hover {
+  /* background-color: #45a049; */
+  opacity: 1;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  /* padding: 40px; */
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 5px;
+  /* background-color: #4caf4f; */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: geogrid9regular;
+  font-size: 1;
+  opacity: 0.6;
+}
+
+.pagination a:hover {
+  /* background-color: #45a049; */
+  opacity: 1;
+}
+
+#query {
+  width: 100%;
+  opacity: 0.4;
+}
+
+#heading {
+  color: #fff;
+  font-family: geogrid9regular;
+  font-size: 1;
+}
+
+#download-icon {
+  height: 30px;
+  width: auto;
+}
